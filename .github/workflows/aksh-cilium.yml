@@ -1,0 +1,17 @@
+name: "aksh cilium"
+"on": workflow_dispatch:
+jobs:
+  build:
+    runs-on: [self-hosted, macOS, ARM64]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: cilium/cilium
+          path: cilium
+          fetch-depth: 1
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+      - name: Build
+        working-directory: cilium
+        run: go build ./... 2>&1 || true

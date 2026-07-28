@@ -1,0 +1,22 @@
+name: "aksh n8n"
+"on": workflow_dispatch:
+jobs:
+  build:
+    runs-on: [self-hosted, macOS, ARM64]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: n8n-io/n8n
+          path: n8n
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Install dependencies
+        working-directory: n8n
+        run: pnpm install 2>&1 || true
+      - name: Build
+        working-directory: n8n
+        run: pnpm build 2>&1 || true

@@ -1,0 +1,22 @@
+name: "aksh echarts"
+on: workflow_dispatch:
+jobs:
+  build:
+    runs-on: [self-hosted, macOS, ARM64]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: apache/echarts
+          path: echarts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        working-directory: echarts
+        run: npm install
+      - name: Lint
+        working-directory: echarts
+        run: npm run lint || true
+      - name: Build
+        working-directory: echarts
+        run: npm run build || true

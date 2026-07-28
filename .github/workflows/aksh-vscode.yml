@@ -1,5 +1,6 @@
 name: "aksh vscode"
-on: workflow_dispatch:
+on:
+  workflow_dispatch:
 jobs:
   build:
     runs-on: [self-hosted, macOS, ARM64]

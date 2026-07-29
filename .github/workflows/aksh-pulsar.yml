@@ -7,15 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository:  echo "apache/echarts";;
-            vscode) echo "microsoft/vscode";;
-            angular) echo "angular/angular";;
-            n8n) echo "n8n-io/n8n";;
-            rocketmq) echo "apache/rocketmq";;
-            pulsar) echo "apache/pulsar";;
-            cilium) echo "cilium/cilium";;
-            kafka) echo "apache/kafka";;
-          esac)
+          repository: apache/pulsar
           path: project
           fetch-depth: 1
       - uses: actions/setup-node@v4

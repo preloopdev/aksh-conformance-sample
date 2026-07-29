@@ -2,20 +2,30 @@ name: "aksh angular"
 on:
   workflow_dispatch:
 jobs:
-  lint:
-    runs-on: [self-hosted, macOS, ARM64]
+  build:
+    runs-on: [self-hosted, campaign-angular]
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: angular/angular
-          path: angular
+          repository:  echo "apache/echarts";;
+            vscode) echo "microsoft/vscode";;
+            angular) echo "angular/angular";;
+            n8n) echo "n8n-io/n8n";;
+            rocketmq) echo "apache/rocketmq";;
+            pulsar) echo "apache/pulsar";;
+            cilium) echo "cilium/cilium";;
+            kafka) echo "apache/kafka";;
+          esac)
+          path: project
           fetch-depth: 1
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Install dependencies
-        working-directory: angular
-        run: npm install 2>&1 || true
-      - name: Build
-        working-directory: angular
-        run: npx bazel build //packages/core 2>&1 || true
+      - name: Check project
+        working-directory: project
+        run: |
+          echo "Project: angular"
+          echo "Directory contents:"
+          ls -la
+          echo "Git log:"
+          git log --oneline -3

@@ -3,21 +3,29 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: [self-hosted, macOS, ARM64]
+    runs-on: [self-hosted, campaign-n8n]
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: n8n-io/n8n
-          path: n8n
+          repository:  echo "apache/echarts";;
+            vscode) echo "microsoft/vscode";;
+            angular) echo "angular/angular";;
+            n8n) echo "n8n-io/n8n";;
+            rocketmq) echo "apache/rocketmq";;
+            pulsar) echo "apache/pulsar";;
+            cilium) echo "cilium/cilium";;
+            kafka) echo "apache/kafka";;
+          esac)
+          path: project
           fetch-depth: 1
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Install pnpm
-        run: npm install -g pnpm
-      - name: Install dependencies
-        working-directory: n8n
-        run: pnpm install 2>&1 || true
-      - name: Build
-        working-directory: n8n
-        run: pnpm build 2>&1 || true
+      - name: Check project
+        working-directory: project
+        run: |
+          echo "Project: n8n"
+          echo "Directory contents:"
+          ls -la
+          echo "Git log:"
+          git log --oneline -3

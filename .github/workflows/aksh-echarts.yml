@@ -7,17 +7,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: apache/echarts
-          path: echarts
+          repository:  echo "apache/echarts";;
+            vscode) echo "microsoft/vscode";;
+            angular) echo "angular/angular";;
+            n8n) echo "n8n-io/n8n";;
+            rocketmq) echo "apache/rocketmq";;
+            pulsar) echo "apache/pulsar";;
+            cilium) echo "cilium/cilium";;
+            kafka) echo "apache/kafka";;
+          esac)
+          path: project
+          fetch-depth: 1
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Install dependencies
-        working-directory: echarts
-        run: npm install
-      - name: Lint
-        working-directory: echarts
-        run: npm run lint 2>&1 || true
-      - name: Build
-        working-directory: echarts
-        run: npm run build 2>&1 || true
+      - name: Check project
+        working-directory: project
+        run: |
+          echo "Project: echarts"
+          echo "Directory contents:"
+          ls -la
+          echo "Git log:"
+          git log --oneline -3
